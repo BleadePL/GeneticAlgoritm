@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Dane_testowe\easy_cost.json" />
+    <None Remove="Dane_testowe\easy_flow.json" />
+    <None Remove="Dane_testowe\flat_cost.json" />
+    <None Remove="Dane_testowe\flat_flow.json" />
+    <None Remove="Dane_testowe\flo_dane_v1.1.zip" />
+    <None Remove="Dane_testowe\hard_cost.json" />
+    <None Remove="Dane_testowe\hard_flow.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Dane_testowe\easy_cost.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dane_testowe\easy_flow.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dane_testowe\flat_cost.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dane_testowe\flat_flow.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dane_testowe\flo_dane_v1.1.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dane_testowe\hard_cost.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dane_testowe\hard_flow.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>
