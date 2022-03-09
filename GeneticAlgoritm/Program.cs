@@ -36,12 +36,6 @@ namespace GeneticAlgoritm
 
 
             var test3 = DataManagment.fitnessFunction(d5, d6, ref factory3);
-
-
-
-
-            Console.WriteLine();
-
         }
     }
 }

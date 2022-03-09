@@ -52,8 +52,8 @@ namespace GeneticAlgoritm
         {
             int distance = 0;
  
-            (int, int) sourcePlacement = getPlacement(f, source);
-            (int, int) destPlacement = getPlacement(f, dest);
+            (int, int) sourcePlacement = getPlacement(ref f, source);
+            (int, int) destPlacement = getPlacement(ref f, dest);
 
             int xDistance = sourcePlacement.Item1 - destPlacement.Item1;
             xDistance =  xDistance < 0 ? -xDistance : xDistance;
@@ -67,7 +67,7 @@ namespace GeneticAlgoritm
         }
 
 
-        private static (int, int) getPlacement(Factory f, int source)
+        private static (int, int) getPlacement(ref Factory f, int source)
         {
             (int, int) coordinates = (-1, -1);
 
@@ -128,18 +128,9 @@ namespace GeneticAlgoritm
                 }
             }
 
-            List<int> tmparray1D = new List<int>();
-
-            for (int i = 0; i < factoryDimX; i++)
-            {
-                for (int j = 0; j < factoryDimY; j++)
-                {
-                    tmparray1D.Add(grid[i, j]);
-                }
-            }
+            List<int> tmparray1D = Enumerable.Repeat(-1, size).ToList();
 
             int k = 0;
-
             foreach (var elem in generatedPlaces)
             {
                 tmparray1D[elem] = k;
