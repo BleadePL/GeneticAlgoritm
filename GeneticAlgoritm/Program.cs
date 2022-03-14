@@ -22,7 +22,7 @@ namespace GeneticAlgoritm
             Console.WriteLine();
 
             var test = Crossover.SinglePointCrossover.cross(newPopS[0], newPopS[1], d1, d2);
-
+            Mutation.BinaryBitFlip.mutation(ref newPopS);
 
             Console.WriteLine($"ch1 - {test.Item1}, \n ch2 - {test.Item2}");
 

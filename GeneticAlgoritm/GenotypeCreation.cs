@@ -9,7 +9,7 @@ namespace GeneticAlgoritm
     internal class GenotypeCreation
     {
         private static Random random = new Random();
-        private const int POPULATION_SIZE = 100000;
+        private const int POPULATION_SIZE = 10;
 
         public static List<Factory> generatePopulation(List<ConnectionCost>connectionCosts, List<ConnectionFlow> connectionFlow, int factoryDimX, int factoryDimY)
         {
@@ -21,10 +21,10 @@ namespace GeneticAlgoritm
 
             population.ForEach(factory => factory.score = fitnessFunction(connectionCosts, connectionFlow, ref factory));
             int tmp = 1;
-/*            foreach (var elem in population)
+            foreach (var elem in population)
             {
                 Console.WriteLine($"{tmp++} {elem}");
-            }*/
+            }
 
             return population;
         }

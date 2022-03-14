@@ -14,6 +14,8 @@ namespace GeneticAlgoritm
         public int FactoryDimY { get; set; }
         public List<int> Machines { get; set; }
 
+        public bool mutationOccured { get; set; }
+
         public double score { get; set; }
         public double Fitness
         {
