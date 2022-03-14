@@ -15,39 +15,31 @@ namespace GeneticAlgoritm.Selection
         {
             var newPopulation = new List<Factory>();
 
-            Console.WriteLine(actPopulation.Sum(f => f.score));
 
-            double fitnessSum = actPopulation.Sum(f => f.score);
+            double fitnessSum = actPopulation.Sum(f => f.Fitness);
 
             double accum = 0.0d;
 
             foreach (var elem in actPopulation)
             {
-                double tmp = (double)elem.score / (double)fitnessSum;
-                probabilityValues.Add((double)tmp + accum, elem.GetHashCode());
+                double tmp = (double)elem.Fitness / (double)fitnessSum;
                 accum += tmp;
+                probabilityValues.Add(accum, elem.GetHashCode());
             }
 
-            double pointLoss;
+            double chosenPoint;
 
             for (int i = 0; i < actPopulation.Count; i++)
             {
-                pointLoss = random.NextDouble();
+                chosenPoint = random.NextDouble();
 
-                var chosen = probabilityValues.Keys.Where(k => k >= pointLoss).First();
+                var chosen = probabilityValues.Keys.Where(k => k >= chosenPoint).First();
                 newPopulation.Add(
                     actPopulation.Find(f => f.GetHashCode() == probabilityValues[chosen])
                     );
             }
 
-
-            newPopulation.ForEach(Console.WriteLine);
-
             return newPopulation;
         }
-
-
-
-
     }
 }

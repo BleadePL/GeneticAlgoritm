@@ -9,7 +9,7 @@ namespace GeneticAlgoritm
     internal class GenotypeCreation
     {
         private static Random random = new Random();
-        private const int POPULATION_SIZE = 10;
+        private const int POPULATION_SIZE = 100000;
 
         public static List<Factory> generatePopulation(List<ConnectionCost>connectionCosts, List<ConnectionFlow> connectionFlow, int factoryDimX, int factoryDimY)
         {
@@ -19,12 +19,12 @@ namespace GeneticAlgoritm
                 population.Add(factoriesInit(connectionCosts, factoryDimX, factoryDimY));
             }
 
-            population.ForEach(factory => factory.score = 1 / (double)fitnessFunction(connectionCosts, connectionFlow, ref factory));
+            population.ForEach(factory => factory.score = fitnessFunction(connectionCosts, connectionFlow, ref factory));
             int tmp = 1;
-            foreach (var elem in population)
+/*            foreach (var elem in population)
             {
                 Console.WriteLine($"{tmp++} {elem}");
-            }
+            }*/
 
             return population;
         }
@@ -53,6 +53,8 @@ namespace GeneticAlgoritm
                         cf.Where(a => a.Source == connectionSource && a.Dest == connectionDest).Select(a => a.Amount).First();
                 }
             }
+
+            factory.score = result;
 
             return result;
         }

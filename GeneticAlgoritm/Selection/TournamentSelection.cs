@@ -18,12 +18,10 @@ namespace GeneticAlgoritm.Selection
             for (int i = 0; i < actPopulation.Count; i++)
             {
                 var randomChoose = 
-                    actPopulation.OrderByDescending(arg => Guid.NewGuid()).Take(TOURNAMENT_BATCH_SIZE).ToList();
+                    actPopulation.OrderBy(arg => Guid.NewGuid()).Take(TOURNAMENT_BATCH_SIZE).ToList();
 
-                newPopulation.Add(randomChoose.OrderBy(arg => arg.score).First());
+                newPopulation.Add(randomChoose.OrderByDescending(arg => arg.Fitness).First());
             }
-
-            newPopulation.ForEach(Console.WriteLine);
 
             return newPopulation;
         }

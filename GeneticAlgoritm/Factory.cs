@@ -15,6 +15,23 @@ namespace GeneticAlgoritm
         public List<int> Machines { get; set; }
 
         public double score { get; set; }
+        public double Fitness
+        {
+            get
+            {
+                if (score == 0) return 0d;
+                else
+                {
+                    return 1 / (double)score;
+                }
+
+            }
+        }
+
+        public int Size
+        {
+            get { return FactoryDimX * FactoryDimY; }
+        }
 
 
 
@@ -28,7 +45,7 @@ namespace GeneticAlgoritm
 
         public override string ToString()
         {
-            return $"Fabryka {FactoryDimX} X {FactoryDimY}, funkcja przystosowania: {score}";
+            return $"Fabryka {FactoryDimX} X {FactoryDimY}, funkcja przystosowania: {Fitness}, score: {score}";
         }
 
     }
