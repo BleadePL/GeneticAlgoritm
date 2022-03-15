@@ -15,16 +15,23 @@ namespace GeneticAlgoritm
 
             var populationEasy = GenotypeCreation.generatePopulation(d1, d2, 3, 3);
 
+/*            var newPopR = RoulleteSelection.newPopulation(populationEasy);*/
+
+            Console.WriteLine("TESTING TOURNAMENT SELECTION");
+
+            //Testing Selection Tournament
             var newPopS = TournamentSelection.newPopulation(populationEasy);
-            Console.WriteLine();
-            var newPopR = RoulleteSelection.newPopulation(populationEasy);
-
-            Console.WriteLine();
-
+            
+            
             var test = Crossover.SinglePointCrossover.cross(newPopS[0], newPopS[1], d1, d2);
-            Mutation.BinaryBitFlip.mutation(ref newPopS);
+            /*            Mutation.BinaryBitFlip.mutation(ref newPopS);*/
 
-            Console.WriteLine($"ch1 - {test.Item1}, \n ch2 - {test.Item2}");
+            
+            
+            Console.WriteLine("TESTING Crossover");
+            //Testing crossover
+            Crossover.SinglePointCrossover.testing(newPopS, d1, d2);
+
 
 
 

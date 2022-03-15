@@ -89,6 +89,21 @@ namespace GeneticAlgoritm.Crossover
             GenotypeCreation.fitnessFunction(connectionCosts, connectionFlow, ref child);
             GenotypeCreation.fitnessFunction(connectionCosts, connectionFlow, ref childReverse);
 
+
+            Console.WriteLine($"ch1 - {parent1}, \n ch2 - {parent2}");
+            Console.WriteLine($"ch1 - {child}, \n ch2 - {childReverse}");
+            Console.WriteLine($"punkt cięcia: {cut_point}");
+
+      
+
+            if (cut_point != 8 && cut_point != 0 && cut_point != 1 && parent1.score != parent2.score)
+            {
+                if (parent1.score != child.score && parent2.score != childReverse.score) Console.WriteLine("TEST PASSED");
+                else Console.WriteLine("TEST FAILED");
+            }
+            else Console.WriteLine("TEST PASSED");
+
+
             return (child, childReverse);
         }
 
@@ -120,6 +135,22 @@ namespace GeneticAlgoritm.Crossover
             }
 
             f = new Factory(grid, machines, x, y);
+        }
+
+        public static void testing(List<Factory> populationTest, List<ConnectionCost> connectionCosts, List<ConnectionFlow> connectionFlow)
+        {
+            if (populationTest.Count % 2 != 0) populationTest.RemoveAt(0);
+
+            var tuples = populationTest.SelectMany((fst, i) => populationTest.Skip(i + 1).Select(snd => (fst, snd))).ToList();
+
+            foreach (var elem in tuples)
+            {
+                var tmp = cross(elem.fst, elem.snd, connectionCosts, connectionFlow);
+                Console.WriteLine("\n---------NEXT--------------");
+            }
+
+
+
         }
 
     }
