@@ -20,17 +20,10 @@ namespace GeneticAlgoritm.Selection
                 var randomChoose = 
                     actPopulation.OrderBy(arg => Guid.NewGuid()).Take(TOURNAMENT_BATCH_SIZE).ToList();
 
-                //Testing delete later
-                randomChoose.ForEach(Console.WriteLine);
-
-                Console.WriteLine();
-
                 newPopulation.Add(randomChoose.OrderByDescending(arg => arg.Fitness).First());
-                
-                newPopulation.ForEach(Console.WriteLine);
-
-                Console.WriteLine("-----------NEXT------------");
             }
+
+            Console.WriteLine("TOURNAMENT SELECTION - DONE!");
 
             return newPopulation;
         }

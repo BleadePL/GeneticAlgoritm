@@ -14,6 +14,8 @@ namespace GeneticAlgoritm.Mutation
         public static void mutation(ref List<Factory> population)
         {
             population.ForEach(x => mutateSingleGrid(ref x));
+
+            Console.WriteLine("MUTATION - DONE");
         }
 
         private static void mutateSingleGrid(ref Factory grid)
@@ -34,7 +36,6 @@ namespace GeneticAlgoritm.Mutation
 
                 }
             }
-
         }
 
         private static (int, int) mutateSingleGene(int x, int y)
