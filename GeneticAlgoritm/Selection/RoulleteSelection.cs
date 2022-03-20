@@ -8,13 +8,11 @@ namespace GeneticAlgoritm.Selection
 {
     internal class RoulleteSelection
     {
-        public static Dictionary<double, int> probabilityValues = new Dictionary<double, int>();
-        public static Random random = new Random();
-
         public static List<Factory> newPopulation(List<Factory> actPopulation)
         {
+            Random random = new Random();
             var newPopulation = new List<Factory>();
-
+            Dictionary<double, int> probabilityValues = new Dictionary<double, int>();
 
             double fitnessSum = actPopulation.Sum(f => f.Fitness);
 

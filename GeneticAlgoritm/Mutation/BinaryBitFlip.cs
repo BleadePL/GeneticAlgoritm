@@ -8,7 +8,6 @@ namespace GeneticAlgoritm.Mutation
 {
     internal class BinaryBitFlip
     {
-        private static Random random = new Random();
         private const double PROPABILITY_MUTATION = 0.2;
 
         public static void mutation(ref List<Factory> population)
@@ -20,6 +19,7 @@ namespace GeneticAlgoritm.Mutation
 
         private static void mutateSingleGrid(ref Factory grid)
         {
+            Random random = new Random();
             for (int i = 0; i < grid.FactoryDimX; i++)
             {
                 for (int j = 0; j < grid.FactoryDimY; j++)
@@ -40,6 +40,7 @@ namespace GeneticAlgoritm.Mutation
 
         private static (int, int) mutateSingleGene(int x, int y)
         {
+            Random random = new Random();
             int xNew, yNew;
 
             xNew = random.Next(0, x);
