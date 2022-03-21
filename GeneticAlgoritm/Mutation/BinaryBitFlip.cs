@@ -40,6 +40,7 @@ namespace GeneticAlgoritm.Mutation
             if (grid.mutationOccured)
             {
                 GenotypeCreation.fitnessFunction(connectionCosts, connectionFlow, ref grid);
+                grid.mutationOccured = false;
             }
 
         }

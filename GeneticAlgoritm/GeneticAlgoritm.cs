@@ -32,7 +32,7 @@ namespace GeneticAlgoritm
                 for (int j = 0; j < testPop.Count(); j += 2)
                 {
                     var tmp = random.NextDouble();
-                    if (tmp <= 0.6)
+                    if (tmp <= 0.5)
                     {
                         var newChildren = Crossover.SinglePointCrossover.cross(testPop[j], testPop[j + 1], connectionCosts, connectionFlow);
                         childSpecimens.Add(newChildren.Item1);

@@ -19,6 +19,8 @@ namespace GeneticAlgoritm
                 population.Add(factoriesInit(connectionCosts, factoryDimX, factoryDimY));
             }
 
+            Console.WriteLine(population.First());
+
             population.ForEach(factory => fitnessFunction(connectionCosts, connectionFlow, ref factory));
 
             Console.WriteLine("Generating init DONE!");
@@ -37,7 +39,7 @@ namespace GeneticAlgoritm
 
             foreach (var machine in machines)
             {
-                var connections = cc.Where(a => a.Source == machine).ToList();
+                var connections = cc.Where(a => a.Source == machine).Distinct().ToList();
 
 
                 foreach (var connection in connections)
