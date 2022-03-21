@@ -8,7 +8,7 @@ namespace GeneticAlgoritm.Selection
 {
     internal class TournamentSelection
     {
-        private const int TOURNAMENT_BATCH_SIZE = 380;
+        private const int TOURNAMENT_BATCH_SIZE = 100;
 
 
         public static List<Factory> newPopulation(List<Factory> actPopulation)

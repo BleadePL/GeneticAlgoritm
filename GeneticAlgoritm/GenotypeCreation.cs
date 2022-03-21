@@ -9,7 +9,7 @@ namespace GeneticAlgoritm
     internal class GenotypeCreation
     {
         private static Random random = new Random();
-        private const int POPULATION_SIZE = 6000;
+        private const int POPULATION_SIZE = 7000;
 
         public static List<Factory> generatePopulation(List<ConnectionCost>connectionCosts, List<ConnectionFlow> connectionFlow, int factoryDimX, int factoryDimY)
         {
