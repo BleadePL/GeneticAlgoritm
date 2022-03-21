@@ -8,23 +8,24 @@ namespace GeneticAlgoritm.Mutation
 {
     internal class BinaryBitFlip
     {
-        private const double PROPABILITY_MUTATION = 0.2;
+        private const double PROPABILITY_MUTATION = 0.005;
 
-        public static void mutation(ref List<Factory> population)
+        public static void mutation(ref List<Factory> population, List<ConnectionCost> connectionCosts, List<ConnectionFlow> connectionFlow)
         {
-            population.ForEach(x => mutateSingleGrid(ref x));
+            population.ForEach(x => mutateSingleGrid(ref x, connectionCosts, connectionFlow));
 
             Console.WriteLine("MUTATION - DONE");
         }
 
-        private static void mutateSingleGrid(ref Factory grid)
+        private static void mutateSingleGrid(ref Factory grid, List<ConnectionCost> connectionCosts,  List<ConnectionFlow> connectionFlow)
         {
             Random random = new Random();
             for (int i = 0; i < grid.FactoryDimX; i++)
             {
                 for (int j = 0; j < grid.FactoryDimY; j++)
                 {
-                    if (random.Next() > PROPABILITY_MUTATION)
+                    var tmp = random.NextDouble();
+                    if (tmp < PROPABILITY_MUTATION)
                     {
                         var coordinates = mutateSingleGene(grid.FactoryDimX, grid.FactoryDimY);
 
@@ -36,6 +37,11 @@ namespace GeneticAlgoritm.Mutation
 
                 }
             }
+            if (grid.mutationOccured)
+            {
+                GenotypeCreation.fitnessFunction(connectionCosts, connectionFlow, ref grid);
+            }
+
         }
 
         private static (int, int) mutateSingleGene(int x, int y)

@@ -45,4 +45,8 @@
     <PackageReference Include="OxyPlot.Core.Drawing" Version="2.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Wynik\" />
+  </ItemGroup>
+
 </Project>

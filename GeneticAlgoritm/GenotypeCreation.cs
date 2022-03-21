@@ -9,7 +9,7 @@ namespace GeneticAlgoritm
     internal class GenotypeCreation
     {
         private static Random random = new Random();
-        private const int POPULATION_SIZE = 2000;
+        private const int POPULATION_SIZE = 6000;
 
         public static List<Factory> generatePopulation(List<ConnectionCost>connectionCosts, List<ConnectionFlow> connectionFlow, int factoryDimX, int factoryDimY)
         {
@@ -114,6 +114,7 @@ namespace GeneticAlgoritm
         {
             int size = factoryDimX * factoryDimY;
             int tmpIndex;
+            int machines = size;
 
             List<int> generatedPlaces = new List<int>();
             int[,] grid = new int[factoryDimX, factoryDimY];
@@ -126,13 +127,13 @@ namespace GeneticAlgoritm
                 }
             }
 
-            while (machinesCount > 0)
+            while (machines > 0)
             {
                 tmpIndex = random.Next(0, size);
                 if (!generatedPlaces.Contains(tmpIndex))
                 {
                     generatedPlaces.Add(tmpIndex);
-                    machinesCount--;
+                    machines--;
                 }
             }
 

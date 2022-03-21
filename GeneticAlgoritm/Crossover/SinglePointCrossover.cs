@@ -24,16 +24,18 @@ namespace GeneticAlgoritm.Crossover
             transformGrid1D(ref parent2, out flatGridP2);
 
 
-
             int oldGen, newGen;
+           
 
             for (int i = 0; i < cut_point; i++)
             {
                 oldGen = flatGridP1[i];
                 newGen = flatGridP2[i];
 
-                if (newGen != oldGen && oldGen != -1 && newGen != -1)
+                if (newGen != oldGen)
                 {
+
+                   
                     if (!used.ContainsKey(oldGen) && !usedReversed.ContainsKey(newGen))
                     {
                         used[newGen] = oldGen;
@@ -58,6 +60,7 @@ namespace GeneticAlgoritm.Crossover
                         usedReversed[used[newGen]] = newGen;
                         used.Remove(oldGen);
                     }
+                    
 
                     flatGridP1[i] = newGen;
                     flatGridP2[i] = oldGen;
@@ -69,12 +72,16 @@ namespace GeneticAlgoritm.Crossover
             {
                 int firstGen = flatGridP1[i];
 
+
+
                 if (used.ContainsKey(firstGen))
                 {
                     flatGridP1[i] = used[firstGen];
                 }
 
                 int secondGen = flatGridP2[i];
+
+
                 if (usedReversed.ContainsKey(secondGen))
                 {
                     flatGridP2[i] = usedReversed[secondGen];

@@ -8,7 +8,7 @@ namespace GeneticAlgoritm
 {
     internal class GeneticAlgoritm
     {
-        private const int TESTING_PARAMETER = 200;
+        private const int TESTING_PARAMETER = 100;
 
         public static List<Factory> bestSpecimens(List<Factory> population, ref List<ConnectionCost> connectionCosts, ref List<ConnectionFlow> connectionFlow)
         {
@@ -32,7 +32,7 @@ namespace GeneticAlgoritm
                 for (int j = 0; j < testPop.Count(); j += 2)
                 {
                     var tmp = random.NextDouble();
-                    if (tmp <= 0.8)
+                    if (tmp <= 0.6)
                     {
                         var newChildren = Crossover.SinglePointCrossover.cross(testPop[j], testPop[j + 1], connectionCosts, connectionFlow);
                         childSpecimens.Add(newChildren.Item1);
@@ -52,7 +52,7 @@ namespace GeneticAlgoritm
                                     childSpecimens.Add(newChildren.Item2);
                                 }*/
 
-                Mutation.BinaryBitFlip.mutation(ref childSpecimens);
+                Mutation.BinaryBitFlip.mutation(ref childSpecimens,  connectionCosts, connectionFlow);
 
 
                 var min = childSpecimens.Min(a => a.score);
