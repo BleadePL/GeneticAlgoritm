@@ -25,26 +25,26 @@ namespace GeneticAlgoritm
 
 
 
-            var d3 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\flat_cost.json");
-            var d4 = DataManagment.ReadData<ConnectionFlow>("Dane_testowe\\flat_flow.json");
+            /*            var d3 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\flat_cost.json");
+                        var d4 = DataManagment.ReadData<ConnectionFlow>("Dane_testowe\\flat_flow.json");
 
-            var populationFlat = GenotypeCreation.generatePopulation(d3, d4, 1, 12);
-            var best = GeneticAlgoritm.bestSpecimens(populationFlat, ref d3, ref d4);
+                        var populationFlat = GenotypeCreation.generatePopulation(d3, d4, 1, 12);
+                        var best = GeneticAlgoritm.bestSpecimens(populationFlat, ref d3, ref d4);
+                        var isTrue = best.Min(a => a.score);
+                        var test = best.Find(a => a.score == isTrue);*/
+
+
+
+
+            var d5 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\hard_cost.json");
+            var d6 = DataManagment.ReadData<ConnectionFlow>("Dane_testowe\\hard_flow.json");
+
+            var populationHard = GenotypeCreation.generatePopulation(d5, d6, 5, 6);
+            var best = GeneticAlgoritm.bestSpecimens(populationHard, ref d5, ref d6);
+
             var isTrue = best.Min(a => a.score);
             var test = best.Find(a => a.score == isTrue);
-
-
-
-
-            /*            var d5 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\hard_cost.json");
-                        var d6 = DataManagment.ReadData<ConnectionFlow>("Dane_testowe\\hard_flow.json");
-
-                        var populationHard = GenotypeCreation.generatePopulation(d5, d6, 5, 6);
-                        var best = GeneticAlgoritm.bestSpecimens(populationHard, ref d5, ref d6);
-
-                        var isTrue = best.Min(a => a.score);
-                        var test = best.Find(a => a.score == isTrue);
-                        Console.WriteLine();*/
+            Console.WriteLine();
 
 
             DataTable table = new DataTable();
@@ -52,7 +52,7 @@ namespace GeneticAlgoritm
             table.Columns.Add("Score", typeof(double));
 
             
-            table.Rows.Add(populationFlat.Min(a => a.score));
+            table.Rows.Add(populationHard.Min(a => a.score));
             
 
             foreach (var elem in best)

@@ -9,7 +9,7 @@ namespace GeneticAlgoritm
     internal class GenotypeCreation
     {
         private static Random random = new Random();
-        private const int POPULATION_SIZE = 7000;
+        private const int POPULATION_SIZE = 6000;
 
         public static List<Factory> generatePopulation(List<ConnectionCost>connectionCosts, List<ConnectionFlow> connectionFlow, int factoryDimX, int factoryDimY)
         {
@@ -39,7 +39,7 @@ namespace GeneticAlgoritm
 
             foreach (var machine in machines)
             {
-                var connections = cc.Where(a => a.Source == machine).Distinct().ToList();
+                var connections = cc.Where(a => a.Source == machine).ToList();
 
 
                 foreach (var connection in connections)

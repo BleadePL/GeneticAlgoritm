@@ -16,7 +16,7 @@ namespace GeneticAlgoritm
 
         public bool mutationOccured { get; set; }
 
-        public double score { get; set; }
+        public int score { get; set; }
         public double Fitness
         {
             get
@@ -24,7 +24,7 @@ namespace GeneticAlgoritm
                 if (score == 0) return 0d;
                 else
                 {
-                    return 1 / (double)score;
+                    return Math.Pow(1 / (double)score, 5);      //Made changes to make roullete work better
                 }
 
             }

@@ -17,8 +17,7 @@ namespace GeneticAlgoritm.Selection
             Random random = new Random();
             List<Factory> randomChoose = new List<Factory>();
             var tmpIndex = random.Next(0, actPopulation.Count());
-            var best = actPopulation[tmpIndex];
-            best.score = double.MaxValue;
+            Factory best = actPopulation[tmpIndex];
 
             for (int i = 0; i < actPopulation.Count; i++)
             {
@@ -34,13 +33,15 @@ namespace GeneticAlgoritm.Selection
                                 }
                                 newPopulation.Add(randomChoose.First());
                                 randomChoose.Clear();*/
+                int actBestScore = int.MaxValue;
 
                 for (int j = 0; j < TOURNAMENT_BATCH_SIZE; j++)
                 {
                     var index = random.Next(0, actPopulation.Count());
                     var chosenGen = actPopulation[index];
-                    if (best.score > chosenGen.score)
+                    if (actBestScore > chosenGen.score)
                     {
+                        actBestScore = chosenGen.score;
                         best = chosenGen;
                     }
                 }
