@@ -10,17 +10,19 @@ namespace GeneticAlgoritm
     {
         private const int TESTING_PARAMETER = 100;
 
-        public static List<Factory> bestSpecimens(List<Factory> population, ref List<ConnectionCost> connectionCosts, ref List<ConnectionFlow> connectionFlow)
+        public static (List<Factory>, List<int>, List<int>) bestSpecimens(List<Factory> population, ref List<ConnectionCost> connectionCosts, ref List<ConnectionFlow> connectionFlow)
         {
             List<Factory> bestSpecimens = new List<Factory>();
             Random random = new Random();
             var currentPopulation = population;
+            List<int> average = new List<int>();
+            List<int> worst = new List<int>();
 
             Console.WriteLine($"Current population size: {currentPopulation.Count()}");
 
             for (int i = 0; i < TESTING_PARAMETER; i++)
             {
-                var testPop = Selection.TournamentSelection.newPopulation(currentPopulation);
+                var testPop = Selection.RoulleteSelection.newPopulation(currentPopulation);
 
                 List<Factory> childSpecimens = new List<Factory>();
 
@@ -56,14 +58,18 @@ namespace GeneticAlgoritm
 
 
                 var min = childSpecimens.Min(a => a.score);
-                Console.WriteLine($"Najlepszy: {min}");
+                var max = childSpecimens.Max(a => a.score);
+                int avg = (int)childSpecimens.Average(a => a.score);
+                Console.WriteLine($"Najlepszy: {min}, Średnio: {avg}, Najgorzej: {max}");
                 bestSpecimens.Add(childSpecimens.Find(a => a.score ==  min));
+                average.Add(avg);
+                worst.Add(max);
 
                 currentPopulation = childSpecimens;
                 Console.WriteLine($"Current population size: {currentPopulation.Count()}");
                 Console.WriteLine("Koniec populacji");
             }
-            return bestSpecimens;
+            return (bestSpecimens, average, worst);
         }
 
 

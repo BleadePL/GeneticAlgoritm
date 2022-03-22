@@ -14,50 +14,46 @@ namespace GeneticAlgoritm
         static void Main(string[] args)
         {
             //Connection costs and flow of machines
-            /*            var d1 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\easy_cost.json");
-                        var d2 = DataManagment.ReadData<ConnectionFlow>("Dane_testowe\\easy_flow.json");
+            var d1 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\easy_cost.json");
+            var d2 = DataManagment.ReadData<ConnectionFlow>("Dane_testowe\\easy_flow.json");
 
-                        var populationEasy = GenotypeCreation.generatePopulation(d1, d2, 3, 3);
+            var populationEasy = GenotypeCreation.generatePopulation(d1, d2, 3, 3);
 
-                        var best = GeneticAlgoritm.bestSpecimens(populationEasy, ref d1, ref d2);
-                        var isTrue = best.Min(a => a.score);
-                        var test = best.Find(a => a.score == isTrue);*/
+            var best = GeneticAlgoritm.bestSpecimens(populationEasy, ref d1, ref d2);
 
 
-
-            /*            var d3 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\flat_cost.json");
+            /*
+                        var d3 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\flat_cost.json");
                         var d4 = DataManagment.ReadData<ConnectionFlow>("Dane_testowe\\flat_flow.json");
 
                         var populationFlat = GenotypeCreation.generatePopulation(d3, d4, 1, 12);
-                        var best = GeneticAlgoritm.bestSpecimens(populationFlat, ref d3, ref d4);
-                        var isTrue = best.Min(a => a.score);
-                        var test = best.Find(a => a.score == isTrue);*/
+                        var best = GeneticAlgoritm.bestSpecimens(populationFlat, ref d3, ref d4);*/
 
 
 
 
-            var d5 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\hard_cost.json");
-            var d6 = DataManagment.ReadData<ConnectionFlow>("Dane_testowe\\hard_flow.json");
 
-            var populationHard = GenotypeCreation.generatePopulation(d5, d6, 5, 6);
-            var best = GeneticAlgoritm.bestSpecimens(populationHard, ref d5, ref d6);
+            /*            var d5 = DataManagment.ReadData<ConnectionCost>("Dane_testowe\\hard_cost.json");
+                        var d6 = DataManagment.ReadData<ConnectionFlow>("Dane_testowe\\hard_flow.json");
 
-            var isTrue = best.Min(a => a.score);
-            var test = best.Find(a => a.score == isTrue);
-            Console.WriteLine();
+                        var populationHard = GenotypeCreation.generatePopulation(d5, d6, 5, 6);
+                        var best = GeneticAlgoritm.bestSpecimens(populationHard, ref d5, ref d6);*/
+
 
 
             DataTable table = new DataTable();
 
-            table.Columns.Add("Score", typeof(double));
+            table.Columns.Add("Best", typeof(double));
+            table.Columns.Add("Average", typeof(double));
+            table.Columns.Add("Worst", typeof(double));
 
             
-            table.Rows.Add(populationHard.Min(a => a.score));
-            
+            table.Rows.Add(populationEasy.Min(a => a.score), (int)populationEasy.Average(a => a.score), populationEasy.Max(a => a.score));
 
-            foreach (var elem in best)
+
+            for (int i = 0; i < best.Item1.Count(); i++)
             {
-                table.Rows.Add(elem.score);
+                table.Rows.Add(best.Item1[i].score, best.Item2[i], best.Item3[i]);
             }
 
 
